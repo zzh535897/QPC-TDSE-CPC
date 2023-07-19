@@ -3,7 +3,7 @@ The CPC library version of QPC-TDSE[[1]](https://doi.org/10.1016/j.cpc.2023.1087
 
 Stable version. 
 
-NO usual developement will be made to this repo, except bug fixing.
+Please note this repo is for documentation. Usual developement will NOT be made to this repo. Bug fixing and new features are tested elsewhere, and will be gathered to this repo if a new stable version is formulated.
 
 ### References
 [1] Zhao-Han Zhang, Yang Li, Yi-Jia Mao, Feng He,
