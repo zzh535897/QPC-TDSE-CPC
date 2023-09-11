@@ -92,7 +92,7 @@ struct	eigenstate_sph final//to store all required eigenstates and eigenvalues (
 				for(size_t i=0;i<dims_t::n_dims;++i)
 				{	
 					if(crit(l,temp_val[i],temp_vec.data()+i*dims_t::n_dims))
-					crit_result.push_back(i);//requirement: crit(m,l,eig,vec)
+					crit_result.push_back(i);//requirement: crit(l,eig,vec)
 				}
 				//dump all required states
 				auto& vec_this	=	vec(l);
@@ -103,6 +103,7 @@ struct	eigenstate_sph final//to store all required eigenstates and eigenvalues (
 				{
 					size_t s=crit_result[i];
 					val_this[i]=temp_val[s];
+					double sig = temp_vec[s*dims_t::n_dims]>0.? 1.:-1.;
 					//to store the left hand side basis, multiply by S
 					intrinsic::symb_mul_vecd<dims_t::n_dims,dims_t::n_elem,0>
 					(
@@ -221,41 +222,3 @@ struct	eigenstate_bic final
 	}//end of initialize
 		
 };//end of eigenstate_bic
-
-
-/*template<class dims_t>
-struct	[[deprecated]] statistics
-{
-	static inline auto	generate_axis_m	()
-	{//get the m value on (im,il)-grid
-		auto	axis	=	std::vector<long>(dims_t::m_dims*dims_t::l_dims);
-		for(size_t im=0;im<dims_t::m_dims;++im)
-		for(size_t il=0;il<dims_t::l_dims;++il)
-		{
-			axis[im*dims_t::l_dims+il]=dims_t::in_m(im);
-		}
-		return	axis;//use NRVO or move
-	}//end of generate_axis_m
-	static inline auto	generate_axis_l	()
-	{//get the l value on (im,il)-grid
-		auto	axis	=	std::vector<long>(dims_t::m_dims*dims_t::l_dims);
-		for(size_t im=0;im<dims_t::m_dims;++im)
-                for(size_t il=0;il<dims_t::l_dims;++il)
-                {
-			axis[im*dims_t::l_dims+il]=dims_t::in_l(im,il);
-                }
-                return  axis;//use NRVO or move
-	}//end of generate_axis_l
-	static inline auto	generate_dist_ml(const coefficient_view<dims_t>& coef,const operator_sc<dims_t>& oper)
-	{//evaluate the polulation |P(m,l)|^2 on (im,il)-grid
-		auto	dist	=	std::vector<double>(dims_t::m_dims*dims_t::l_dims);
-		#pragma omp parallel for collapse(2)
-		for(size_t im=0;im<dims_t::m_dims;++im)
-                for(size_t il=0;il<dims_t::l_dims;++il)
-		{
-			dist[im*dims_t::l_dims+il]=norm(oper.observe_rsub(coef(im,il),coef(im,il)));
-		}
-		return 	dist;
-	}//end of generate_dist_ml
-};//end of statistics*/
-
