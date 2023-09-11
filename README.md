@@ -1,4 +1,4 @@
-### QPC-TDSE-CPC
+# QPC-TDSE-CPC
 The CPC library version of QPC-TDSE[[1]](https://doi.org/10.1016/j.cpc.2023.108787). 
 
 Stable version. 
@@ -6,13 +6,13 @@ Stable version.
 Please note this repo is for documentation. Usual developement will NOT be made to this repo. Bug fixing and new features are tested elsewhere, and will be gathered to this repo if a new stable version is formulated.
 
 
-### Issues
+## Issues
 2023.9.11<br>
 (1) The missing scaling factor sqrt(2E) in the analysis script plot_part.m has been corrected. 
 
 (2) The format of output "proj_val" for the real-time projection onto bound states has been corrected. Now it follows the format in the user guide.
 
-### Important
+## Important
 2023.9.11<br>
 (1) The variable "lmd1" in an output file actually differs a phase factor to the P_{lm}(E) as
 
@@ -28,7 +28,7 @@ A modified gaussian envelope with its tail cut should be customized instead. One
 
 In the latest version we always fix the sign of eigen states to be positive near the origin.
 
-### References
+## References
 [1] Zhao-Han Zhang, Yang Li, Yi-Jia Mao, Feng He,
 *QPC-TDSE: A parallel TDSE solver for atoms and small molecules in strong lasers*
 [Comput. Phys. Comm., **290** 108787 (2023)]
