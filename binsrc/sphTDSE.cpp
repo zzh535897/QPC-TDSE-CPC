@@ -438,8 +438,11 @@ namespace proj
 			for(size_t im=0;im<dims_t::m_dims;++im)
 			for(size_t il=0;il<dims_t::l_dims;++il)
 			{
-				for(size_t ii=0;ii<nnz[im*dims_t::l_dims+il];++ii)
-				val.push_back(tmp[im*dims_t::l_dims*dims_t::n_dims+il*dims_t::n_dims+ii]);
+				auto beg = tmp.begin()+im*dims_t::l_dims*dims_t::n_dims+il*dims_t::n_dims;
+                                auto end = beg + nnz[im*dims_t::l_dims+il];
+                                val.insert(val.end(),beg,end);
+				//for(size_t ii=0;ii<nnz[im*dims_t::l_dims+il];++ii)
+				//#val.push_back(tmp[im*dims_t::l_dims*dims_t::n_dims+il*dims_t::n_dims+ii]);
 			}
 		}
 	}//end of calc_proj
@@ -449,7 +452,14 @@ namespace proj
 	{
 		if constexpr(calculate_proj==1)
 		{
-			proj->projection(coef,val,nnz);//calculate projection onto eigen states
+			proj->projection(coef,tmp,nnz);//calculate projection onto eigen states
+			for(size_t im=0;im<dims_t::m_dims;++im)
+                        for(size_t il=0;il<dims_t::l_dims;++il)
+                        {
+                                auto beg = tmp.begin()+im*dims_t::l_dims*dims_t::n_dims+il*dims_t::n_dims;
+                                auto end = beg + nnz[im*dims_t::l_dims+il];
+                                val.insert(val.end(),beg,end);
+                        }
 			file.save((double*)val.data(),val.size()*2ul,"/proj_val");
 			file.save((size_t*)nnz.data(),nnz.size()    ,"/proj_nnz");
 		}
