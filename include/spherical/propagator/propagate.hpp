@@ -196,7 +196,7 @@ inline	void	cn_propagate_kernel_avx3
 						a[_j][4] = s - ifet[2] * r; 
 						a[_j][5] = 0.0;
 						a[_j][6] = s - ifet[3] * r; 
-						a[_j][6] = 0.0;
+						a[_j][7] = 0.0;
 						b[_j][0] = s + ifet[0] * r; 
 						b[_j][1] = 0.0;
 						b[_j][2] = s + ifet[1] * r; 
