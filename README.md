@@ -7,6 +7,9 @@ Please note this repo is for documentation. Usual developement will NOT be made 
 
 
 ## Issues
+2024.7.10<br>
+(1) A bug in propagate.hpp has been fixed. It only affects the codes running on platforms which support avx512 intrinsics.
+
 2023.9.11<br>
 (1) The missing scaling factor sqrt(2E) in the analysis script plot_part.m has been corrected. 
 
