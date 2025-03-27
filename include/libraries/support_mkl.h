@@ -326,7 +326,7 @@ namespace qpc
 	}
 
 	template<class errn_t>
-	void 	mkl_sparse_check(int n,int* ia,int *ja)
+	void 	mkl_sparse_check(int64_t n,int64_t* ia,int64_t *ja)
 	{
 		sparse_struct handle;
 		sparse_matrix_checker_init(&handle);
