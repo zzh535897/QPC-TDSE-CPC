@@ -7,7 +7,9 @@ INC		+= -I $(GSL_PATH)/include
 INC		+= -I $(HDF_PATH)/include
 
 LIB		:= -L $(QPC_PATH)/lib
-LIB		+= -L $(MKL_PATH)/lib/intel64 -L $(ICX_PATH)/compiler/lib/intel64_lin
+LIB		+= -L $(GCC_PATH)/lib64
+LIB		+= -L $(MKL_PATH)/lib/intel64
+LIB		+= -L $(ICX_PATH)/lib
 LIB 		+= -L $(GSL_PATH)/lib
 LIB		+= -L $(HDF_PATH)/lib
 ########################################################################
@@ -27,9 +29,11 @@ CCFLAGS		+= -DMKL_ILP64
 LDFLAGS		:= -fopenmp 
 LDFLAGS		+= -Wl,--gc-sections -Wl,--no-as-needed
 LDFLAGS		+= -Wl,-rpath=$(QPC_PATH)/lib
-LDFLAGS		+= -Wl,-rpath=$(MKL_PATH)/lib/intel64 -Wl,-rpath=$(ICX_PATH)/compiler/lib/intel64 -lmkl_intel_ilp64 -lmkl_rt -lmkl_intel_thread -lmkl_core -liomp5 -lpthread -lm -ldl
-LDFLAGS	 	+= -Wl,-rpath=$(GSL_PATH)/lib         -lgsl
-LDFLAGS 	+= -Wl,-rpath=$(HDF_PATH)/lib         -lhdf5 -ldl -lz -lm
+LDFLAGS         += -Wl,-rpath=$(GCC_PATH)/lib64
+LDFLAGS		+= -Wl,-rpath=$(MKL_PATH)/lib/intel64 -lmkl_intel_ilp64 -lmkl_rt -lmkl_intel_thread -lmkl_core 
+LDFLAGS		+= -Wl,-rpath=$(ICX_PATH)/lib -liomp5 -lpthread -lm -ldl
+LDFLAGS	 	+= -Wl,-rpath=$(GSL_PATH)/lib -lgsl
+LDFLAGS 	+= -Wl,-rpath=$(HDF_PATH)/lib -lhdf5 -ldl -lz -lm
 
 ########################################################################
 DEBUG		:= #-pg
