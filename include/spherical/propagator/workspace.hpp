@@ -152,9 +152,10 @@ struct	cn_workspace_sp final
 		parm[1]	=	2;	//fill-in reordering from METIS
 	
 		parm[5] =	0;    	//solutions are out-of-place
-		parm[23]=	enable_lowrank?10:0;
+		parm[23]=	10;
 		parm[26]=	0;	//disable matrix check
 		parm[34]=	1;	//zero-based indexing
+		parm[38]=       enable_lowrank?1:0;
 	}//end of allocation
 
 	//phase: 
